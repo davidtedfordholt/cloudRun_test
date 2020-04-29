@@ -1,9 +1,13 @@
-#* @post /fable
+library(plumber)
+
+#* Forecast tsibble
+#* @param req
 #* @serializer rds
+#* @post /fable
 function(req) {
     
     packageStartupMessage("forecasting object")
-    req$robj %>%
+    req$tsbl %>%
         fabletools::model(
             naive = fable::NAIVE(),
             snaive = fable::SNAIVE(),
